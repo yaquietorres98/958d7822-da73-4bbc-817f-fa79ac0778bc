@@ -1,5 +1,4 @@
 import fire
-
 import pandas as pd
 
 from util import Game, Host, Guest, play_random_game
@@ -33,7 +32,11 @@ class Main(object):
     @staticmethod
     def play_multiple_games(strategy="random", times=100, opts=3, save=""):
         # TODO: implement multiple games
-        raise NotImplementedError
+        results = list(map(lambda x: play_random_game(number_of_options=opts, strategy=strategy), range(times)))
+        print(results)
+        if save:
+            pd.DataFrame(results).to_csv(save)
+        #raise NotImplementedError
 
 
 if __name__ == "__main__":

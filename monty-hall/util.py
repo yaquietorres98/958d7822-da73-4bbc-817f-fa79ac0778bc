@@ -1,6 +1,4 @@
 import random
-
-
 class Door(object):
 
     def __init__(self, value):
