@@ -55,9 +55,9 @@ class InvestmentProject(object):  # class
 
     def equivalent_annuity(self, interest_rate=None):
         if not interest_rate:
-            annuity = self.interest * npv / (1 - (1 + hurdle_rate) ** (-self.n))
-        else:
-            annuity = self.interest * npv / (1 - (1 + interest_rate) ** (-self.n))
+            interest_rate = self.hurdle_rate
+        annuity = (self.net_present_value(interest_rate)*interest_rate) / (1 - (1 + interest_rate) **
+                                                                          (-self.cashflow_max_position))
         return annuity
 
     def describe(self):
