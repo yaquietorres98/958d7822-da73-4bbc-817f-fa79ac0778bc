@@ -31,12 +31,24 @@ class Main(object):
 
     @staticmethod
     def play_multiple_games(strategy="random", times=100, opts=3, save=""):
-        # TODO: implement multiple games
-        results = list(map(lambda x: play_random_game(number_of_options=opts, strategy=strategy), range(times)))
-        print(results)
+        result = []
+        for i in range(times):
+            play = play_random_game(number_of_options=opts, strategy=strategy)
+            result.append(play)
+
+        def unique(list1):
+            final_list = []
+            list_res = [final_list.append(x) for x in list1 if x not in final_list]
+            return final_list
+        unique_value = unique(result)
+        throw = []
+        uv = [throw.append(result.count(j)) for j in unique_value]
+        throw_prob = [x/times for x in throw]
+        answer = pd.DataFrame(list(zip(throw, throw_prob)), index=unique_value,columns=["throw","probability"])
+        print(answer)
         if save:
-            pd.DataFrame(results).to_csv(save)
-        #raise NotImplementedError
+            answer.to_csv(save)
+        return
 
 
 if __name__ == "__main__":
