@@ -39,10 +39,10 @@ class InvestmentProject(object):  # class
         df = pd.DataFrame(rows)
         plot = df.plot.bar(x="t", y=["amount"], stacked=True)
         fig = plot.get_figure()
+        plt.title("CashFlow")
+        plt.xlabel("t")
+        plt.ylabel("amount")
         if show:
-            plt.title("CashFlow")
-            plt.xlabel("t")
-            plt.ylabel("amount")
             plt.show()
         return fig
 
